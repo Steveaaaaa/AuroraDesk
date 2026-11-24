@@ -1,0 +1,24 @@
+<Window x:Class="AuroraDesk.App.Windows.LeftMostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="220" Height="168" Title="最多使用"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False">
+    <Border x:Name="RootBorder" CornerRadius="16" BorderBrush="#33FFFFFF" BorderThickness="1" Padding="12,10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="Transparent" Cursor="SizeAll" MouseLeftButtonDown="Header_MouseLeftButtonDown">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="3" Height="13" CornerRadius="1.5" Background="#34D399" Margin="0,0,7,0"/>
+                    <TextBlock Text="最多使用" Foreground="#F8FAFC" FontSize="12" FontWeight="SemiBold" FontFamily="Microsoft YaHei UI"/>
+                </StackPanel>
+                <TextBlock Text="次数排行" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#99A7F3D0" FontSize="10" FontFamily="Microsoft YaHei UI"/>
+            </Grid>
+
+            <UniformGrid x:Name="SlotsGrid" Grid.Row="1" Columns="4" Rows="2" Margin="0,6,0,0"/>
+        </Grid>
+    </Border>
+</Window>

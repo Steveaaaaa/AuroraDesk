@@ -1,0 +1,57 @@
+<Window x:Class="AuroraDesk.App.Windows.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="560" SizeToContent="Height" MaxHeight="520" Topmost="True"
+        WindowStartupLocation="CenterScreen" Title="AuroraDesk 秒搜"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False">
+    <Border x:Name="RootBorder" Background="#AA12131E" CornerRadius="16" BorderBrush="#55A78BFA" BorderThickness="1.2" Padding="14,12">
+        <StackPanel>
+            <!-- Search Input -->
+            <Grid Height="42">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="🔍" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#A78BFA"/>
+                <TextBlock x:Name="PlaceholderText" Grid.Column="1" Text="输入软件名、拼音首字母 (如 wx / cad) 或算式..."
+                           Foreground="#66CBD5E1" FontSize="14.5" FontFamily="Microsoft YaHei UI" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <TextBox x:Name="QueryBox" Grid.Column="1" Background="Transparent" BorderThickness="0"
+                         Foreground="#F8FAFC" CaretBrush="#A78BFA" FontSize="15.5" FontFamily="Microsoft YaHei UI"
+                         VerticalAlignment="Center" TextChanged="QueryBox_TextChanged" PreviewKeyDown="QueryBox_PreviewKeyDown"/>
+                <TextBlock Grid.Column="2" Text="ESC 关闭" Foreground="#6694A3B8" FontSize="10.5" VerticalAlignment="Center" Margin="8,0,2,0"/>
+            </Grid>
+
+            <!-- Results List -->
+            <Border x:Name="Divider" Height="1" Background="#22FFFFFF" Margin="0,6,0,8" Visibility="Collapsed"/>
+            <ListBox x:Name="ResultsList" Background="Transparent" BorderThickness="0" MaxHeight="390"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="Collapsed"
+                     MouseDoubleClick="ResultsList_MouseDoubleClick" PreviewKeyDown="ResultsList_PreviewKeyDown">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Padding" Value="8,6"/>
+                        <Setter Property="Margin" Value="0,2"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="10" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="#332A2E45"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="#55A78BFA"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </StackPanel>
+    </Border>
+</Window>

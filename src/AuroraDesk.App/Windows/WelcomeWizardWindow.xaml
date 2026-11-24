@@ -1,0 +1,61 @@
+<Window x:Class="AuroraDesk.App.Windows.WelcomeWizardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="640" Height="500" WindowStartupLocation="CenterScreen"
+        Background="#131520" Foreground="#F1F5F9" Title="欢迎使用 AuroraDesk · 首次初始化向导">
+    <Grid Margin="22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="44"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,14">
+            <TextBlock Text="✨ 欢迎使用 AuroraDesk 极简桌面工作台" FontSize="19" FontWeight="Bold" FontFamily="Microsoft YaHei UI"/>
+            <TextBlock Text="选择最适合你的收纳模板，软件会自动整理桌面并在左右两侧生成真·毛玻璃悬浮工作台。"
+                       Foreground="#94A3B8" FontSize="12" Margin="0,6,0,0" FontFamily="Microsoft YaHei UI"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,14">
+            <TextBlock Text="1. 选择右侧分类模板：" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton x:Name="RbTpl1" Content="通用学生 / 工科办公版（课程论文、MATLAB/CAD、表格、社交、游戏）"
+                             IsChecked="True" Foreground="#E2E8F0" Margin="0,0,16,6" Checked="Template_Changed"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton x:Name="RbTpl2" Content="程序员 / 工科开发版（IDE、工科仿真AI、社交、游戏、简历论文）"
+                             Foreground="#E2E8F0" Checked="Template_Changed"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="PreviewHeader" Text="2. 桌面文件归档预览：" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,6"/>
+            <DataGrid x:Name="PreviewGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                      Background="#1A1D2D" Foreground="#F1F5F9" RowBackground="#1A1D2E" AlternatingRowBackground="#1E2236"
+                      BorderBrush="#2E334D" HeadersVisibility="Column">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#24283D"/>
+                        <Setter Property="Foreground" Value="#E2E8F0"/>
+                        <Setter Property="Padding" Value="8,5"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="当前桌面文件" Binding="{Binding FileName}" Width="*"/>
+                    <DataGridTextColumn Header="将自动归入分类" Binding="{Binding TargetCategory}" Width="210"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Content="暂不移动桌面文件，直接开启工作台" Padding="12,6" Margin="0,0,10,0" Click="BtnSkipTidy_Click"/>
+            <Button Content="确认整理并开启 AuroraDesk" Padding="16,6" Background="#7C3AED" Foreground="White" BorderThickness="0"
+                    FontWeight="SemiBold" Click="BtnStart_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

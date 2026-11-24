@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>AuroraDesk</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AuroraDesk.Core\AuroraDesk.Core.csproj" />
+    <ProjectReference Include="..\AuroraDesk.Native\AuroraDesk.Native.csproj" />
+    <Content Include="..\AuroraDesk.TaskbarTap\bin\AuroraDesk.TaskbarTap.dll"
+             Condition="Exists('..\AuroraDesk.TaskbarTap\bin\AuroraDesk.TaskbarTap.dll')"
+             Link="AuroraDesk.TaskbarTap.dll" CopyToOutputDirectory="PreserveNewest"
+             CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+  </ItemGroup>
+</Project>
